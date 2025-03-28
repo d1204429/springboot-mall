@@ -2,7 +2,7 @@ package com.hobart.springbootmall.model;
 
 import com.hobart.springbootmall.constant.ProductCategory;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 
 
 public class Product {
@@ -13,8 +13,8 @@ public class Product {
    private Integer price;
    private Integer stock;
    private String description;
-   private Date createDate;
-   private Date lastModifiedDate;
+   private LocalDateTime createDate;
+   private LocalDateTime lastModifiedDate;
 
     public Integer getProductId() {
         return productId;
@@ -72,19 +72,19 @@ public class Product {
         this.description = description;
     }
 
-    public Date getCreateDate() {
+    public LocalDateTime getCreateDate() {
         return createDate;
     }
 
-    public void setCreateDate(Date createDate) {
+    public void setCreateDate(LocalDateTime createDate) {
         this.createDate = createDate;
     }
 
-    public Date getLastModifiedDate() {
+    public LocalDateTime getLastModifiedDate() {
         return lastModifiedDate;
     }
 
-    public void setLastModifiedDate(Date lastModifiedDate) {
+    public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
         this.lastModifiedDate = lastModifiedDate;
     }
 }
