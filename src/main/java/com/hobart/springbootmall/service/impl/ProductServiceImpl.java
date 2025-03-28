@@ -27,4 +27,11 @@ import org.springframework.stereotype.Component;
     public void updateProduct(Integer productId, ProductRequest productRequest) {
         productDao.updateProduct(productId, productRequest);
     }
+
+    @Override
+    public void deleteProductById(Integer productId) {
+
+        productDao.deleteProductById(productId);
+
+    }
 }
