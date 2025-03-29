@@ -1,5 +1,6 @@
 package com.hobart.springbootmall.controller;
 
+import com.hobart.springbootmall.constant.ProductCategory;
 import com.hobart.springbootmall.dto.ProductRequest;
 import com.hobart.springbootmall.model.Product;
 import com.hobart.springbootmall.service.ProductService;
@@ -19,9 +20,12 @@ public class ProductController {
 
     //查詢會返回商品列表與商品數據
     @GetMapping("/products")
-    public ResponseEntity<List<Product>> getProducts(){
+    public ResponseEntity<List<Product>> getProducts(
+        @RequestParam(required = false) ProductCategory category,
+        @RequestParam(required = false) String search
+    ) {
 
-        List<Product> productList = productService.getProducts();
+        List<Product> productList = productService.getProducts(category, search);
 
         return ResponseEntity.status(HttpStatus.OK).body(productList);
 
