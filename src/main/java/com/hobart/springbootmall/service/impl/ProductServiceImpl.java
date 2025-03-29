@@ -1,8 +1,8 @@
 package com.hobart.springbootmall.service.impl;
 
 
-import com.hobart.springbootmall.constant.ProductCategory;
 import com.hobart.springbootmall.dao.ProductDao;
+import com.hobart.springbootmall.dto.ProductQueryParams;
 import com.hobart.springbootmall.dto.ProductRequest;
 import com.hobart.springbootmall.model.Product;
 import com.hobart.springbootmall.service.ProductService;
@@ -17,8 +17,8 @@ import java.util.List;
     private ProductDao productDao;
 
     @Override
-    public List<Product> getProducts(ProductCategory category, String search) {
-        return productDao.getProducts(category, search);
+    public List<Product> getProducts(ProductQueryParams productQueryParams) {
+        return productDao.getProducts(productQueryParams);
     }
 
     @Override
