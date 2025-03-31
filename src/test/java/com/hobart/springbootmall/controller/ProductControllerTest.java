@@ -32,30 +32,33 @@ public class ProductControllerTest {
 
     private ObjectMapper objectMapper = new ObjectMapper();
 
-    //查詢商品
+
+    // 查詢商品
     @Test
     public void getProduct_success() throws Exception {
-
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/product/{productId}",1);
+                .get("/products/{productId}", 1);
 
         mockMvc.perform(requestBuilder)
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.productId",equalTo("蘋果(澳洲)")))
-                .andExpect(jsonPath("$.productName",equalTo("FOOD")))
-                .andExpect(jsonPath("$.category",notNullValue()))
-                .andExpect(jsonPath("$.price",notNullValue()))
-                .andExpect(jsonPath("$.stock",notNullValue()))
-                .andExpect(jsonPath("$.description",notNullValue()))
-                .andExpect(jsonPath("$.createdDate",notNullValue()))
-                .andExpect(jsonPath("$.lastModifiedDate",notNullValue()));
+                .andExpect(jsonPath("$.productName", Matchers.equalTo("蘋果（澳洲）")))
+                .andExpect(jsonPath("$.category", Matchers.equalTo("FOOD")))
+                .andExpect(jsonPath("$.imageUrl", Matchers.notNullValue()))
+                .andExpect(jsonPath("$.price", Matchers.notNullValue()))
+                .andExpect(jsonPath("$.stock", Matchers.notNullValue()))
+                .andExpect(jsonPath("$.description", Matchers.notNullValue()))
+                .andExpect(jsonPath("$.createdDate", Matchers.notNullValue()))
+                .andExpect(jsonPath("$.lastModifiedDate", Matchers.notNullValue()));
     }
 
+    @Test
     public void getProduct_notFound() throws Exception {
         RequestBuilder requestBuilder = MockMvcRequestBuilders
-                .get("/product/{productId}",1000);
-        mockMvc.perform(requestBuilder).andExpect(status().is(404));
+                .get("/products/{productId}", 20000);
+
+        mockMvc.perform(requestBuilder)
+                .andExpect(status().is(404));
     }
 
     // 創建商品
