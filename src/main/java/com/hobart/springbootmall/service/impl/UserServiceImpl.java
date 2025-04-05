@@ -1,6 +1,7 @@
 package com.hobart.springbootmall.service.impl;
 
 import com.hobart.springbootmall.dao.UserDao;
+import com.hobart.springbootmall.dto.UserLoginRequest;
 import com.hobart.springbootmall.dto.UserRegisterRequest;
 import com.hobart.springbootmall.model.User;
 import com.hobart.springbootmall.service.UserService;
@@ -23,7 +24,7 @@ public class UserServiceImpl implements UserService {
   @Override
   public Integer register(UserRegisterRequest userRegisterRequest) {
     User user = userDao.getUserByEmail(userRegisterRequest.getEmail());
-    if (user != null){
+    if (user != null) {
       log.warn("該email {} 已被註冊", userRegisterRequest.getEmail());
       throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
     }
@@ -33,5 +34,23 @@ public class UserServiceImpl implements UserService {
   @Override
   public User getUserById(Integer userId) {
     return userDao.getUserById(userId);
+  }
+
+  @Override
+  public User login(UserLoginRequest userLoginRequest) {
+    User user = userDao.getUserByEmail(userLoginRequest.getEmail());
+
+    if (user == null) {
+      log.warn("該email {} 尚未註冊", userLoginRequest.getEmail());
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
+
+    //字串之間的比較記得使用equals
+    if (user.getPassword().equals(userLoginRequest.getPassword())) {
+      return user;
+    } else {
+      log.warn("email {} 的密碼不正確", userLoginRequest.getEmail());
+      throw new ResponseStatusException(HttpStatus.BAD_REQUEST);
+    }
   }
 }
