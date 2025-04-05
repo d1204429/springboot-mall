@@ -1,10 +1,14 @@
 package com.hobart.springbootmall.dto;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
 
 public class UserRegisterRequest {
 
   @NotBlank
+  //驗證email格式
+  @Email
   private String email;
   @NotBlank
   private String password;

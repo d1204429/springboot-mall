@@ -1,11 +1,15 @@
 package com.hobart.springbootmall.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonProperty;
 import java.time.LocalDateTime;
 
 public class User {
 
   private Integer userId;
   private String email;
+  //不顯示密碼(不回傳)
+  @JsonIgnore
   private String password;
   private LocalDateTime createdDate;
   private LocalDateTime lastModifiedDate;
