@@ -1,9 +1,14 @@
 package com.hobart.springbootmall.dao;
 
+import com.hobart.springbootmall.model.Order;
 import com.hobart.springbootmall.model.OrderItem;
 import java.util.List;
 
 public interface OrderDao {
+
+  Order getOrderById(Integer orderId);
+
+  List<OrderItem> getOrderItemsListByOrderId(Integer orderId);
 
   Integer createOrder(Integer userId, Integer totalAmount);
 

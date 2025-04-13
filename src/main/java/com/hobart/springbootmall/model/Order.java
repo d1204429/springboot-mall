@@ -1,14 +1,18 @@
 package com.hobart.springbootmall.model;
 
 
+import java.time.LocalDateTime;
 import java.util.Date;
+import java.util.List;
 
 public class Order {
  private Integer orderId;
  private Integer userId;
  private Integer totalAmount;
- private Date createdDate;
- private Date lastModifiedDate;
+ private LocalDateTime createdDate;
+ private LocalDateTime lastModifiedDate;
+
+ private List<OrderItem> orderItemList;
 
   public Integer getOrderId() {
     return orderId;
@@ -34,19 +38,27 @@ public class Order {
     this.totalAmount = totalAmount;
   }
 
-  public Date getCreatedDate() {
+  public LocalDateTime getCreatedDate() {
     return createdDate;
   }
 
-  public void setCreatedDate(Date createdDate) {
+  public void setCreatedDate(LocalDateTime createdDate) {
     this.createdDate = createdDate;
   }
 
-  public Date getLastModifiedDate() {
+  public LocalDateTime getLastModifiedDate() {
     return lastModifiedDate;
   }
 
-  public void setLastModifiedDate(Date lastModifiedDate) {
+  public void setLastModifiedDate(LocalDateTime lastModifiedDate) {
     this.lastModifiedDate = lastModifiedDate;
+  }
+
+  public List<OrderItem> getOrderItemList() {
+    return orderItemList;
+  }
+
+  public void setOrderItemList(List<OrderItem> orderItemList) {
+    this.orderItemList = orderItemList;
   }
 }
